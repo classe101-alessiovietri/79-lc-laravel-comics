@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('thumb', 2048)->nullable();
             $table->unsignedDecimal('price', 5, 2);
-            $table->string('series', 32)->nullable();
+            $table->string('series', 64)->nullable();
             $table->date('sale_date')->nullable();
             $table->string('type', 32);
             $table->text('artists')->nullable();
