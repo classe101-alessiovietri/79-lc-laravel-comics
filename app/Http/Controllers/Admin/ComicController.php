@@ -21,7 +21,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        dd('create');
+        return view('admin.comics.create');
     }
 
     /**
@@ -29,7 +29,31 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        dd('store');
+        $request->validate([
+            'title' => 'required|max:70',
+            'description' => 'required',
+            'thumb' => 'nullable|max:2048',
+            'price' => 'required|numeric|min:2|max:100',
+            'series' => 'nullable|max:64',
+            'sale_date' => 'nullable|date',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
+        ]);
+
+        $comic = new Comic();
+        $comic->title = $request->input('title');
+        $comic->description = $request->input('description');
+        $comic->thumb = $request->input('thumb');
+        $comic->price = $request->input('price');
+        $comic->series = $request->input('series');
+        $comic->sale_date = $request->input('sale_date');
+        $comic->type = $request->input('type');
+        $comic->artists = $request->input('artists');
+        $comic->writers = $request->input('writers');
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**
@@ -37,7 +61,7 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
-        dd('show');
+        return view('admin.comics.show', compact('comic'));
     }
 
     /**
@@ -45,7 +69,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        dd('edit');
+        return view('admin.comics.edit', compact('comic'));
     }
 
     /**
@@ -53,7 +77,30 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        dd('update');
+        $request->validate([
+            'title' => 'required|max:70',
+            'description' => 'required',
+            'thumb' => 'nullable|max:2048',
+            'price' => 'required|numeric|min:2|max:100',
+            'series' => 'nullable|max:64',
+            'sale_date' => 'nullable|date',
+        ], [
+            'title.required' => 'Il titolo è obbligatorio',
+            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
+        ]);
+
+        $comic->title = $request->input('title');
+        $comic->description = $request->input('description');
+        $comic->thumb = $request->input('thumb');
+        $comic->price = $request->input('price');
+        $comic->series = $request->input('series');
+        $comic->sale_date = $request->input('sale_date');
+        $comic->type = $request->input('type');
+        $comic->artists = $request->input('artists');
+        $comic->writers = $request->input('writers');
+        $comic->save();
+
+        return redirect()->route('comics.show', ['comic' => $comic->id]);
     }
 
     /**
