@@ -13,7 +13,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-        //
+        dd('index');
     }
 
     /**
@@ -21,7 +21,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        dd('create');
     }
 
     /**
@@ -29,7 +29,7 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('store');
     }
 
     /**
@@ -37,7 +37,7 @@ class ComicController extends Controller
      */
     public function show(Comic $comic)
     {
-        //
+        dd('show');
     }
 
     /**
@@ -45,7 +45,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        dd('edit');
     }
 
     /**
@@ -53,7 +53,7 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+        dd('update');
     }
 
     /**
@@ -61,6 +61,6 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        dd('destroy');
     }
 }
