@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controllers
+use App\Http\Controllers\Admin\ComicController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,22 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('comics', ComicController::class);
+
+
 Route::get('/', function () {
-    $students = [
-        'Marco',
-        'Gino',
-        'Claudia',
-    ];
-
-    $data = compact('students');
-
-    // dd($data);
-
-    return view('home', $data);
-
-    // return view('home', [
-    //     'students' => $students
-    // ]);
+    return view('home', []);
 });
 
 Route::get('/contatti', function () {
