@@ -6,6 +6,10 @@ use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+// Requests
+use App\Http\Requests\Comic\StoreComicRequest;
+use App\Http\Requests\Comic\UpdateComicRequest;
+
 class ComicController extends Controller
 {
     /**
@@ -27,19 +31,19 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->validate([
-            'title' => 'required|max:70',
-            'description' => 'required',
-            'thumb' => 'nullable|max:2048',
-            'price' => 'required|numeric|min:2|max:100',
-            'series' => 'nullable|max:64',
-            'sale_date' => 'nullable|date',
-        ], [
-            'title.required' => 'Il titolo è obbligatorio',
-            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
-        ]);
+        // $request->validate([
+        //     'title' => 'required|max:70',
+        //     'description' => 'required',
+        //     'thumb' => 'nullable|max:2048',
+        //     'price' => 'required|numeric|min:2|max:100',
+        //     'series' => 'nullable|max:64',
+        //     'sale_date' => 'nullable|date',
+        // ], [
+        //     'title.required' => 'Il titolo è obbligatorio',
+        //     'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
+        // ]);
 
         $comic = new Comic();
         $comic->title = $request->input('title');
@@ -75,7 +79,7 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
         $request->validate([
             'title' => 'required|max:70',
