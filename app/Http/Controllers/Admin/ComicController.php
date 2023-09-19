@@ -81,18 +81,6 @@ class ComicController extends Controller
      */
     public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $request->validate([
-            'title' => 'required|max:70',
-            'description' => 'required',
-            'thumb' => 'nullable|max:2048',
-            'price' => 'required|numeric|min:2|max:100',
-            'series' => 'nullable|max:64',
-            'sale_date' => 'nullable|date',
-        ], [
-            'title.required' => 'Il titolo è obbligatorio',
-            'title.max' => 'Il titolo non può essere più lungo di 70 caratteri',
-        ]);
-
         $comic->title = $request->input('title');
         $comic->description = $request->input('description');
         $comic->thumb = $request->input('thumb');
